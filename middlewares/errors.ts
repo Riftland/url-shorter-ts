@@ -1,8 +1,8 @@
-import { ErrorRequestHandler, NextFunction, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import httpErrors from "../misc/errors";
 import { HttpError } from "../types";
 
-export const notFound = (_, __, next: NextFunction): void => {
+export const notFound = (_: Request, __: Response, next: NextFunction): void => {
   next(httpErrors[404]);
 };
 
