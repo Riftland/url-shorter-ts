@@ -2,9 +2,9 @@
   "name": "url-shorter-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "ts-node app.ts - env-file .env"
+    "start": "tsx --env-file=.env ./index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -15,10 +15,10 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "slonik": "^41.0.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "tsx": "^4.7.2"
   }
 }

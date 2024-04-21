@@ -1,3 +1,3 @@
-import slonik from 'slonik';
+import { createPool } from 'slonik';
 
-export default slonik.createPool(process.env.DB_URL ?? '');
+export default createPool(process.env.DB_URL ?? '');

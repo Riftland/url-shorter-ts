@@ -18,8 +18,8 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true
-  },
-  "include": ["./src/**/*.ts"],
+  }, 
+  "include": ["./**/*.ts"],
   "exclude": ["./node_modules"],
   "types": ["node"]
 }
