@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import httpErrors from "../misc/errors";
+import { ErrorCodes } from '../types';
 
 export const fieldsValidator = (...fields: string[]) => (req: Request, _: Response, next: NextFunction) => {
     for (let field of fields) {
-        if (!req.body[field]) return next(httpErrors[400]);
+        if (!req.body[field]) return next(httpErrors[ErrorCodes.NOT_FOUND]);
     }
 
     const { password } = req.body;
