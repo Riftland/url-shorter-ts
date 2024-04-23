@@ -4,9 +4,9 @@ import { DatabasePool, SlonikError } from "slonik";
 export type HttpError = {
   statusCode: number;
   error: Error;
-};
+} | undefined;
 
-export type ErrorsCatalog = Record<string | number, HttpError>;
+export type ErrorsCatalog = Record<ErrorCodes, HttpError>;
 
 export type DbPool = DatabasePool;
 
@@ -24,21 +24,33 @@ export type SuccessResponse<T> = {
 export type FailureResponse = string;
 
 export type ModelResponse<T> = {
-  ok: boolean,
-  message?: string,
-  error_code?: string | undefined,
-  content?: T | undefined,
+  ok: boolean;
+  message?: string;
+  error_code?: ErrorCodes;
+  content?: T | undefined;
 };
 
 export type SuccessCB<T> = () => Promise<SuccessResponse<T> | void>;
 
 export type FailureCB<T> = (error: T) => FailureResponse;
 
-export type CatcherFn<T, U> = (successCB: SuccessCB<T>, failureCB: FailureCB<U>) => Promise<ModelResponse<T>>
+// export type CatcherFn<T, U> = (successCB: SuccessCB<T>, failureCB: FailureCB<U>) => Promise<ModelResponse<T>>
+
+export type DbError = SlonikError;
 
 export type UserPayload = {
-  email: string;
-  username: string;
+  email?: string;
+  username?: string;
+  url?: string;
 }
 
-export type DBError = SlonikError;
+export enum ErrorCodes {
+  BAD_REQUEST = 'bad_request',
+  WRONG_DATA = 'wrong_data',
+  PASS_LENGTH = 'pass_length',
+  UNAUTHORIZED = 'unauthorized',
+  CORS = 'cors',
+  NOT_FOUND = 'not_found',
+  SERVER_ERROR = 'server_error',
+  NO_ERROR = 'no_error',
+};
