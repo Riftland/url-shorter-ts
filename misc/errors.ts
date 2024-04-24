@@ -29,7 +29,7 @@ const httpErrors: ErrorsCatalog = {
     statusCode: 500,
     error: new Error("something went wrong!"),
   },
-  [ErrorCodes.NO_ERROR]: undefined
+  [ErrorCodes.NO_ERROR]: {}
 };
 
 export default httpErrors;
