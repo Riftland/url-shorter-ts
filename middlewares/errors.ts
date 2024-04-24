@@ -1,9 +1,10 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import httpErrors from "../misc/errors";
-import { HttpError } from "../types";
+import { ErrorCodes, HttpError } from "../types";
+import { setResponse } from "../utils";
 
 export const notFound = (_: Request, __: Response, next: NextFunction): void => {
-  next(httpErrors[404]);
+  next(httpErrors[ErrorCodes.NOT_FOUND]);
 };
 
 export const errorManager: ErrorRequestHandler = (
@@ -12,8 +13,11 @@ export const errorManager: ErrorRequestHandler = (
   res: Response,
   __
 ): void => {
-  res.status(statusCode).json({
-    success: false,
-    message: error.message,
-  });
+  setResponse(
+    res.status(statusCode as number)
+  )(undefined, error?.message);
+  // res.status(statusCode as number).json({
+  //   success: false,
+  //   message: error?.message,
+  // });
 };
