@@ -2,9 +2,9 @@ import { NextFunction, Request, Response, Router } from "express";
 import { DatabasePool, SlonikError } from "slonik";
 
 export type HttpError = {
-  statusCode: number;
-  error: Error;
-} | undefined;
+  statusCode?: number;
+  error?: Error;
+};
 
 export type ErrorsCatalog = Record<ErrorCodes, HttpError>;
 
@@ -54,3 +54,9 @@ export enum ErrorCodes {
   SERVER_ERROR = 'server_error',
   NO_ERROR = 'no_error',
 };
+
+export type ApiResponse = {
+  success: boolean;
+  data?: Record<string, string | number>;
+  message?: string;
+}
