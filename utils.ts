@@ -1,4 +1,6 @@
-import { DbError, ErrorCodes, FailureCB, ModelResponse, SuccessCB } from "./types";
+import { OK_STATUS, REDIRECTION_STATUS } from "./constants";
+import { ApiResponse, DbError, ErrorCodes, FailureCB, ModelResponse, SuccessCB } from "./types";
+import { Response } from "express";
 
 export const log = (msg: string): void => console.info(msg);
 
@@ -50,4 +52,20 @@ export const extract =
             for (const prop of props) (result[prop] = origin[prop])
 
             return result;
+        }
+
+export const setResponse =
+    (res: Response) =>
+        (data?: Record<string, string | number>, message?: string): void => {
+            res.json({
+                success: res.statusCode === OK_STATUS,
+                data,
+                message,
+            } as ApiResponse)
+        }
+
+export const setRedirect =
+    (res: Response) =>
+        (destinationUrl: string): void => {
+            res.redirect(REDIRECTION_STATUS, destinationUrl);
         }
