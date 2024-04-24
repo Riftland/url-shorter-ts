@@ -1,14 +1,18 @@
 import { hash } from "simple-stateless-auth-library-ts";
-import { ControllersMiddleware } from "../../types";
+import { ControllersMiddleware, DbPool, ErrorCodes } from "../../types";
+import { createUser } from "../../models/auth";
+import httpErrors from "../../misc/errors";
 
 export const signup: ControllersMiddleware = (db) => async (req, res, next) => {
     const { email, username, password } = req.body;
 
-    const encrypted = await hash.encrypt(password);
+    const response = await createUser(
+        await db as DbPool
+    )(email, username, await hash.encrypt(password as string));
 
-    // Llamada a la query que crea el usuario en BBDD;
+    if (!response.ok) return next(httpErrors[ErrorCodes.SERVER_ERROR]);
 
     res.status(200).json({
         success: true,
-    })
+    });
 }
