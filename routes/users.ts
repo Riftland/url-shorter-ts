@@ -1,11 +1,13 @@
 import { Router } from "express";
-import controllers from "../controllers/users";
+import { getUser, getUrlsCreated } from "../controllers/users";
 import { RoutesMiddleware } from "../types";
+import { authorizer } from "../middlewares";
 
 const router = Router();
 
 const usersRoutes: RoutesMiddleware = (db) => {
-  router.get("/", controllers.getUser());
+  router.get('/', authorizer(), getUser());
+  router.get('/shorts', authorizer(), getUrlsCreated(db));
 
   return router;
 };
