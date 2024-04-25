@@ -1,15 +1,15 @@
-import { OK_STATUS, REDIRECTION_STATUS } from "./constants";
+import { OK_STATUS, REDIRECTION_STATUS, URL_TOKEN_LEN, URL_TOKEN_POS_START } from "./constants";
 import { ApiResponse, DbError, ErrorCodes, FailureCB, ModelResponse, SuccessCB } from "./types";
 import { Response } from "express";
 
 export const log = (msg: string): void => console.info(msg);
 
-// --- Proposal ---
+// --- Proposal for catcher ---
 // export const catcher: CatcherFn = async (
 //     successCB,
 //     failureCB,
 // ) => {
-// ----------------
+// ----------------------------
 
 export const catcher = async <T, U>(
     successCB: SuccessCB<T>,
@@ -55,8 +55,8 @@ export const extract =
         }
 
 export const setResponse =
-    (res: Response) =>
-        (data?: Record<string, string | number>, message?: string): void => {
+    <T>(res: Response) =>
+        (data?: T | Record<string, T>, message?: string): void => {
             res.json({
                 success: res.statusCode === OK_STATUS,
                 data,
@@ -69,3 +69,8 @@ export const setRedirect =
         (destinationUrl: string): void => {
             res.redirect(REDIRECTION_STATUS, destinationUrl);
         }
+
+export const genToken = (len = 8): string =>
+    Math.random()
+        .toString(36)
+        .slice(URL_TOKEN_POS_START, URL_TOKEN_POS_START + URL_TOKEN_LEN);
