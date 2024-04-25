@@ -2,6 +2,8 @@ import { hash } from "simple-stateless-auth-library-ts";
 import { ControllersMiddleware, DbPool, ErrorCodes } from "../../types";
 import { createUser } from "../../models/auth";
 import httpErrors from "../../misc/errors";
+import { setResponse } from "../../utils";
+import { OK_STATUS } from "../../constants";
 
 export const signup: ControllersMiddleware = (db) => async (req, res, next) => {
     const { email, username, password } = req.body;
@@ -12,7 +14,7 @@ export const signup: ControllersMiddleware = (db) => async (req, res, next) => {
 
     if (!response.ok) return next(httpErrors[ErrorCodes.SERVER_ERROR]);
 
-    res.status(200).json({
-        success: true,
-    });
+    setResponse<undefined>(
+        res.status(OK_STATUS)
+    )();
 }

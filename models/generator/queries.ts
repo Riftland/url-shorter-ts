@@ -1,5 +1,5 @@
 import { sql } from "slonik";
-import { selectIdByEmail } from "../queries";
+import { selectIdByEmail } from "../auth/queries";
 
 export const insertUrl = (email: string, shortUrl: string, originUrl: string) => sql.unsafe`
     INSERT INTO links (

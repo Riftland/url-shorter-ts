@@ -1,5 +1,5 @@
 import httpErrors from "../../misc/errors";
-import { retrieveOriginUrl } from "../../models/auth/generator";
+import { retrieveOriginUrl } from "../../models/generator";
 import { ControllersMiddleware, DbPool, ErrorCodes } from "../../types";
 import { setRedirect } from "../../utils";
 

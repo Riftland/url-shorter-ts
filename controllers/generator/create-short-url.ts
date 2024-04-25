@@ -1,6 +1,6 @@
 import { API_URL, OK_STATUS } from "../../constants";
 import httpErrors from "../../misc/errors";
-import { registerNewUrl } from "../../models/auth/generator";
+import { registerNewUrl } from "../../models/generator";
 import { ControllersMiddleware, DbPool, ErrorCodes } from "../../types";
 import { genToken, setResponse } from "../../utils";
 
@@ -15,7 +15,7 @@ export const createShortUrl: ControllersMiddleware = (db) => async (req, res, ne
 
     if (!response.ok) return next(httpErrors[ErrorCodes.SERVER_ERROR]);
 
-    setResponse(res.status(OK_STATUS))(
-        { url: `${API_URL}${randomPath}` }
-    )
+    setResponse<string>(
+        res.status(OK_STATUS)
+    )({ url: `${API_URL}${randomPath}` })
 }

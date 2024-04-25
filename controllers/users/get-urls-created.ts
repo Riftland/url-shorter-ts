@@ -1,6 +1,6 @@
 import { API_URL, OK_STATUS } from "../../constants";
 import httpErrors from "../../misc/errors";
-import { retrieveShortsByUser } from "../../models/auth/generator";
+import { retrieveShortsByUser } from "../../models/generator";
 import { ControllersMiddleware, DbPool, ErrorCodes, Payload, ShortsByEmail } from "../../types";
 import { setResponse } from "../../utils";
 

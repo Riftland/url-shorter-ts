@@ -16,8 +16,4 @@ export const errorManager: ErrorRequestHandler = (
   setResponse(
     res.status(statusCode as number)
   )(undefined, error?.message);
-  // res.status(statusCode as number).json({
-  //   success: false,
-  //   message: error?.message,
-  // });
 };

@@ -1,6 +1,6 @@
-import { RECOVER_ORIGIN_URL_OPT, REGISTER_URL_OPT, RETRIEVE_SHORT_BY_EMAIL } from "../../../constants";
-import { DbError, DbPool, ErrorCodes, ShortsByEmail, UserPayload } from "../../../types";
-import { catcher, nonOk, setContent, stdErrCB } from "../../../utils";
+import { RECOVER_ORIGIN_URL_OPT, REGISTER_URL_OPT, RETRIEVE_SHORT_BY_EMAIL } from "../../constants";
+import { DbError, DbPool, ErrorCodes, ShortsByEmail, UserPayload } from "../../types";
+import { catcher, nonOk, setContent, stdErrCB } from "../../utils";
 import { insertUrl, selectOriginUrl, selectShortsByEmail, updateStatsByShort } from "./queries";
 
 export const registerNewUrl =

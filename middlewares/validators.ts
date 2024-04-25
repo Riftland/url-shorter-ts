@@ -3,9 +3,8 @@ import httpErrors from "../misc/errors";
 import { ErrorCodes } from '../types';
 
 export const fieldsValidator = (...fields: string[]) => (req: Request, _: Response, next: NextFunction) => {
-    for (let field of fields) {
+    for (let field of fields)
         if (!req.body[field]) return next(httpErrors[ErrorCodes.BAD_REQUEST]);
-    }
 
     const { password } = req.body;
 

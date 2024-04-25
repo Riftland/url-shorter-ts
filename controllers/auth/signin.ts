@@ -2,6 +2,8 @@ import serializer, { hash } from "simple-stateless-auth-library-ts";
 import { ControllersMiddleware, DbPool, ErrorCodes, UserPayload } from "../../types";
 import { selectUser } from "../../models/auth";
 import httpErrors from "../../misc/errors";
+import { setResponse } from "../../utils";
+import { OK_STATUS } from "../../constants";
 
 export const signin: ControllersMiddleware = (db) => async (req, res, next) => {
     const { email, password } = req.body;
@@ -17,7 +19,7 @@ export const signin: ControllersMiddleware = (db) => async (req, res, next) => {
 
     serializer.serialize(res, response.content as UserPayload);
 
-    res.status(200).json({
-        success: true,
-    })
+    setResponse<undefined>(
+        res.status(OK_STATUS)
+    )();
 }
