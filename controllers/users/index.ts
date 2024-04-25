@@ -1,5 +1,2 @@
-import { getUser } from "./get-user";
-
-export default {
-  getUser,
-};
+export { getUrlsCreated } from "./get-urls-created";
+export { getUser } from "./get-user";
