@@ -60,3 +60,19 @@ export type ApiResponse = {
   data?: Record<string, string | number>;
   message?: string;
 }
+
+// Models types
+export type ShortsByEmail = {
+  short_url: string;
+  uses: number;
+  uses_by_creator: number;
+}[];
+
+// Controllers payload types
+export type Payload = {
+  shorts: {
+    url: string;
+    yours: number;
+    overall: number;
+  }[];
+};
