@@ -1,7 +1,10 @@
-export const CREATE_USER_OPT = 'create user error';
-export const SELECT_USER_OPT = 'select user error';
-export const REGISTER_URL_OPT = 'error registering a new url';
-export const RECOVER_ORIGIN_URL_OPT = 'error recovering origin url';
-export const RETRIEVE_SHORT_BY_EMAIL = 'error retrieving shorts by email';
-export const OK_STATUS = 200;
-export const REDIRECTION_STATUS = 307;
+export const CREATE_USER_OPT: string = 'create user error';
+export const SELECT_USER_OPT: string = 'select user error';
+export const REGISTER_URL_OPT: string = 'error registering a new url';
+export const RECOVER_ORIGIN_URL_OPT: string = 'error recovering origin url';
+export const RETRIEVE_SHORT_BY_EMAIL: string = 'error retrieving shorts by email';
+export const OK_STATUS: number = 200;
+export const REDIRECTION_STATUS: number = 307;
+export const URL_TOKEN_POS_START: number = 2;
+export const URL_TOKEN_LEN: number = 8;
+export const API_URL: string = `${process.env.DOMAIN}${process.env.BASE_PATH}`
