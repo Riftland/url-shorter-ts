@@ -6,9 +6,9 @@ import { ErrorCodes } from "../types";
 export const authorizer =
     (strict = true) =>
         (req: Request, res: Response, next: NextFunction) => {
-            const payload = serializer.deserialize(req);
+            const { success, payload } = serializer.deserialize(req);
 
-            if (strict && !payload) return next(httpErrors[ErrorCodes.UNAUTHORIZED]);
+            if (strict && !success) return next(httpErrors[ErrorCodes.UNAUTHORIZED]);
 
             res.locals.user = payload ?? {};
 
